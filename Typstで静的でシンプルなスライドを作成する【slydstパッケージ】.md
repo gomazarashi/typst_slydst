@@ -116,9 +116,57 @@ raw形式でコードを挿入することもできます。
 # 他のパッケージとの併用
 slydstを他のパッケージと併用してみます。これが可能であれば、LT会や講義等のための資料作成にかなり役立ちそうです。
 
-## codelst
+## codelstでコードを挿入する
+codelstパッケージはTypstでコードを挿入するためのパッケージです。以下のように記述します。詳しくは[私の記事](https://qiita.com/gomazarashi/items/ddef3d0db22a9f1e08ba)や[公式のマニュアル](https://github.com/jneug/typst-codelst/blob/main/manual.pdf)を確認していただくとして、今回は簡単な例を示します。
+    
+```typst
+    == codelstを使ってみる
+    #import "@preview/codelst:2.0.1":*
+    #sourcecode[```c
+        #include <stdio.h>
 
+        int main() {
+            printf("Hello, World!\n");
+            return 0;
+        }
+    ```]
+```
 
+![codelstの挿入](images/codelst.png)
+
+どうやら適切に挿入できているようです。もしサイズなどが気になる場合は`#figure`としてサイズを調整できそうですが、今回は割愛します。
+
+## showyboxで装飾したboxを挿入する
+
+showyboxパッケージはTypstで装飾したboxを挿入するためのパッケージです。こちらも申し訳ないですが、[私の記事](https://qiita.com/gomazarashi/items/2e83759fe6755b14b2bb)や[公式のマニュアル](https://github.com/Pablo-Gonzalez-Calderon/showybox-package/blob/main/Showybox's%20Manual.pdf)を参照してください。
+それでは簡単な例を示します。
+
+```typst
+== showyboxを使ってみる
+#v(10%)
+#showybox(title: "Green's Theorem", frame: (
+  border-color: olive,
+  title-color: olive.lighten(10%),
+  body-color: olive.lighten(95%),
+  footer-color: olive.lighten(80%),
+), footer: "証明は省略する。")[
+  閉曲線$C$で囲まれた領域$D$において、$C^1$級関数$P(x,y)$と$Q(x,y)$に対して、以下が成り立つ。
+  $ integral.cont_C (P dif x + Q dif y ) = integral.double_D ((diff Q)/(diff x)-(diff P)/(diff y)) dif x dif y $
+]
+```
+
+![showyboxの挿入](images/showybox.png)
+
+数式も含め、適切に挿入できているようです。
+
+# まとめ
+今回はTypstのパッケージであるslydstを使って、静的でシンプルなスライドを作成する方法について解説し、他のパッケージとの併用も可能であることが確認できました。今回説明した以外のパッケージとも併用ができそうなので、機会があれば試してみたいと思います。
+
+# 参考
+- [slydst0.1.1](https://typst.app/universe/package/slydst)
+- [glambrechts/slydst](https://github.com/glambrechts/slydst)
+- [Typstでコードを埋め込むには【codelstパッケージ】](https://qiita.com/gomazarashi/items/ddef3d0db22a9f1e08ba) 
+- [Typstで式やテキストを装飾する【showyboxパッケージ】](https://qiita.com/gomazarashi/items/2e83759fe6755b14b2bb)
 
 
 
